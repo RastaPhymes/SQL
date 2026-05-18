@@ -469,7 +469,17 @@ ORDER BY
         WHEN e8.effectivityno_i IS NULL THEN 7
         WHEN e9.effectivityno_i IS NULL THEN 8
         WHEN e10.effectivityno_i IS NULL THEN 9
-        ELSE 10
+        WHEN e11.effectivityno_i IS NULL THEN 10
+	    WHEN e12.effectivityno_i IS NULL THEN 11
+	    WHEN e13.effectivityno_i IS NULL THEN 12
+	    WHEN e14.effectivityno_i IS NULL THEN 13
+	    WHEN e15.effectivityno_i IS NULL THEN 14
+	    WHEN e16.effectivityno_i IS NULL THEN 15
+	    WHEN e17.effectivityno_i IS NULL THEN 16
+	    WHEN e18.effectivityno_i IS NULL THEN 17
+	    WHEN e19.effectivityno_i IS NULL THEN 18
+	    WHEN e20.effectivityno_i IS NULL THEN 19
+        ELSE 20
     END,
 
     q.effectivityno_i,
