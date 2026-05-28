@@ -2,6 +2,7 @@ SELECT
     q.mpno,
     q.issue_no,
     q.mp_revision_no,
+	q.section_code,
     q.taskcardno,
 	q.single_running,
     q.taskcardno_i,
@@ -146,6 +147,7 @@ FROM (
         mmp.mpno,
         mmi.issue_no,
         mmr.revision_no AS mp_revision_no,
+		STRING_AGG(DISTINCT msc_sec.section_code, '; ') AS section_code,
         mt.taskcardno,
 		mtv.single_running,
         mt.taskcardno_i,
@@ -259,6 +261,12 @@ FROM (
     JOIN msc_taskcard_version mtv
         ON mtv.taskcardno_i = latest.taskcardno_i
        AND mtv.taskcard_verno_i = latest.max_taskcard_verno_i
+
+LEFT JOIN msc_task_section mts
+    ON mtv.taskcard_verno_i = mts.taskcard_verno_i
+
+LEFT JOIN msc_section_code msc_sec
+    ON mts.sectionno_i = msc_sec.sectionno_i
 
     JOIN msc_item mi
         ON mtv.taskcard_verno_i = mi.taskcard_verno_i
